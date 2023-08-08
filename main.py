@@ -19,17 +19,25 @@ source = "@Deriv_Tradingsignals"
 @client.on(events.NewMessage(chats=[source]))
 async def forward_messages(event):
     print(event.message)
-    if event.message.fwd_from is None:
-        if event.message.photo and event.message.text:
-            if "DerivBotManager" not in event.message.text:
-                for channel in destination_channels:
-                    await client.send_file(entity=channel, file=event.message.photo, caption=event.message.text)
-        elif event.message.text:
-            if "DerivBotManager" not in event.message.text:
-                for channel in destination_channels:
-                    await client.send_message(entity=channel, message=event.message.text)
-    else:
+    if event.message.text is not None:
         if "DerivBotManager" not in event.message.text:
+            if event.message.fwd_from is None:
+                if event.message.photo:
+                    for channel in destination_channels:
+                        await client.send_file(entity=channel, file=event.message.photo, caption=event.message.text)
+                elif event.message.photo is None:
+                    for channel in destination_channels:
+                        await client.send_message(entity=channel, message=event.message.text)
+            else:
+                for channel in destination_channels:
+                    await client.forward_messages(entity=channel, messages=event.message)
+    elif event.message.text is None:
+        print("hh")
+        if event.message.fwd_from is None:
+            if event.message.photo:
+                for channel in destination_channels:
+                    await client.send_file(entity=channel, file=event.message.photo)
+        else:
             for channel in destination_channels:
                 await client.forward_messages(entity=channel, messages=event.message)
 
