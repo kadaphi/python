@@ -20,7 +20,7 @@ source = "@Deriv_FreeFXSignal"
 async def forward_messages(event):
     print(event.message)
     if event.message.text is not None:
-        if "DerivBotManager" not in event.message.text:
+        if "DerivBotAdmin" not in event.message.text:
             if event.message.fwd_from is None:
                 if event.message.photo:
                     for channel in destination_channels:
