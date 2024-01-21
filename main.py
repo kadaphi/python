@@ -13,8 +13,8 @@ client.start(phone=phone_number)
 print('Client started successfully!')
 
 # Define the channels to forward messages to
-destination_channels = ["@FreeForex_XAUSSD_Signals", "@MetaTrader_Free_ForexSignals", "@FxPro_Free", "@FreeFx_GoldSignals", "@Deriv_XAUSSD_Signals", "@XAUSSD_Free_ForexSignals", "@XAUSSD_ForexSignals", "@Free_XAUSSD", "@AccurateSignals_Free"]
-source = "@Deriv_FreeFXSignal"
+destination_channels = ["@FOREX_FACTORY_XAUSSD_PIPS", "@METATRADER_FREE_FOREX_SIGNALS", "@FxPro_Free", "@FOREX_FACTORY_SIGNALS_PIPS", "@DERIV_XAUSSD_SIGNALS_PIPS", "@XAUSSD_FREE_FOREX_SIGNALS_PIPS", "@XAUSSD_ForexSignals", "@Free_XAUSSD", "@AccurateSignals_Free"]
+source = "@DERIV_FREE_FOREX_SIGNAL"
 
 @client.on(events.NewMessage(chats=[source]))
 async def forward_messages(event):
